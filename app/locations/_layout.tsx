@@ -39,6 +39,20 @@ export default function LocationsLayout() {
           presentation: "modal",
         }}
       />
+      <Stack.Screen
+        name="qr-generate"
+        options={{
+          title: "Share QR Code",
+          presentation: "modal",
+        }}
+      />
+      <Stack.Screen
+        name="qr-scan"
+        options={{
+          title: "Scan QR Code",
+          presentation: "modal",
+        }}
+      />
     </Stack>
   );
 }

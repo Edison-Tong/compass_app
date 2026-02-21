@@ -59,12 +59,17 @@ export default function LocationsListScreen() {
     ]);
   };
 
+  const handleShare = (location: SavedLocation) => {
+    router.push({ pathname: "/locations/qr-generate", params: { id: location.id } });
+  };
+
   const renderItem = ({ item }: { item: SavedLocation }) => (
     <LocationCard
       location={item}
       isSelected={settings.selectedLocationId === item.id}
       onPress={() => handleSelect(item)}
       onDelete={() => handleDelete(item)}
+      onShare={() => handleShare(item)}
     />
   );
 
@@ -92,7 +97,14 @@ export default function LocationsListScreen() {
         showsVerticalScrollIndicator={false}
       />
 
-      {/* Floating action button */}
+      {/* Floating action buttons */}
+      <TouchableOpacity
+        style={[styles.fab, styles.fabSecondary, { backgroundColor: colors.surface, borderColor: colors.border }]}
+        onPress={() => router.push("/locations/qr-scan")}
+        activeOpacity={0.8}
+      >
+        <Ionicons name="scan-outline" size={24} color={colors.text} />
+      </TouchableOpacity>
       <TouchableOpacity
         style={[styles.fab, { backgroundColor: colors.primary }]}
         onPress={() => router.push("/locations/add")}
@@ -123,5 +135,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 6,
+  },
+  fabSecondary: {
+    right: 84,
+    borderWidth: 1,
   },
 });

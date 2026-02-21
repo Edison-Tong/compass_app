@@ -16,9 +16,10 @@ interface LocationCardProps {
   isSelected: boolean;
   onPress: () => void;
   onDelete: () => void;
+  onShare?: () => void;
 }
 
-export function LocationCard({ location, isSelected, onPress, onDelete }: LocationCardProps) {
+export function LocationCard({ location, isSelected, onPress, onDelete, onShare }: LocationCardProps) {
   const { colors } = useTheme();
 
   return (
@@ -47,6 +48,11 @@ export function LocationCard({ location, isSelected, onPress, onDelete }: Locati
       </View>
       <View style={styles.rightSection}>
         {isSelected && <Ionicons name="heart" size={20} color={colors.primary} style={styles.selectedIcon} />}
+        {onShare && (
+          <TouchableOpacity onPress={onShare} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <Ionicons name="qr-code-outline" size={20} color={colors.textSecondary} />
+          </TouchableOpacity>
+        )}
         <TouchableOpacity onPress={onDelete} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
           <Ionicons name="trash-outline" size={20} color={colors.textTertiary} />
         </TouchableOpacity>
