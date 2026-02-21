@@ -30,15 +30,10 @@ export function CalibrationBanner({ visible, onDismiss }: CalibrationBannerProps
         <Text style={styles.icon}>🔄</Text>
         <View style={styles.textContainer}>
           <Text style={[styles.title, { color: colors.text }]}>Calibrate compass</Text>
-          <Text style={[styles.subtitle, { color: colors.textSecondary }]}>
-            Move your phone in a figure-8 motion
-          </Text>
+          <Text style={[styles.subtitle, { color: colors.textSecondary }]}>Move your phone in a figure-8 motion</Text>
         </View>
       </View>
-      <TouchableOpacity
-        onPress={onDismiss}
-        hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-      >
+      <TouchableOpacity onPress={onDismiss} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
         <Ionicons name="close" size={20} color={colors.textSecondary} />
       </TouchableOpacity>
     </View>

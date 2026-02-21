@@ -74,13 +74,7 @@ export function CompassRose({ heading, size }: CompassRoseProps) {
       />
 
       {/* Rotating content: ticks + labels */}
-      <Animated.View
-        style={[
-          styles.rotatingLayer,
-          { width: size, height: size },
-          animatedStyle,
-        ]}
-      >
+      <Animated.View style={[styles.rotatingLayer, { width: size, height: size }, animatedStyle]}>
         {/* Tick marks */}
         {Array.from({ length: TICK_COUNT }).map((_, i) => {
           const angle = i * 5;
@@ -99,10 +93,7 @@ export function CompassRose({ heading, size }: CompassRoseProps) {
                   backgroundColor: isMajor ? colors.compass.text : colors.compass.needleSecondary,
                   top: 8,
                   left: radius - tickWidth / 2,
-                  transform: [
-                    { translateY: 0 },
-                    { rotate: `${angle}deg` },
-                  ],
+                  transform: [{ translateY: 0 }, { rotate: `${angle}deg` }],
                   transformOrigin: `${tickWidth / 2}px ${radius - 8}px`,
                 },
               ]}

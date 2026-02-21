@@ -49,13 +49,7 @@ export function CompassNeedle({ angle, size }: CompassNeedleProps) {
   }));
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        { width: needleWidth, height: needleHeight },
-        animatedStyle,
-      ]}
-    >
+    <Animated.View style={[styles.container, { width: needleWidth, height: needleHeight }, animatedStyle]}>
       {/* Top half — points toward the target (primary color) */}
       <View
         style={[

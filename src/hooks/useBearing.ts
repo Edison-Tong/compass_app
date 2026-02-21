@@ -78,7 +78,7 @@ export function useBearing(target: Coordinate | null): BearingState {
               longitude: position.coords.longitude,
             });
             setIsLoadingGPS(false);
-          },
+          }
         );
       } catch (err) {
         console.error("[useBearing] GPS watch failed:", err);
@@ -97,22 +97,12 @@ export function useBearing(target: Coordinate | null): BearingState {
   // Derived values — recalculated when heading or positions change
   const bearingToTarget = useMemo(() => {
     if (!userLocation || !target) return 0;
-    return calculateBearing(
-      userLocation.latitude,
-      userLocation.longitude,
-      target.latitude,
-      target.longitude,
-    );
+    return calculateBearing(userLocation.latitude, userLocation.longitude, target.latitude, target.longitude);
   }, [userLocation, target]);
 
   const distanceKm = useMemo(() => {
     if (!userLocation || !target) return 0;
-    return haversineDistance(
-      userLocation.latitude,
-      userLocation.longitude,
-      target.latitude,
-      target.longitude,
-    );
+    return haversineDistance(userLocation.latitude, userLocation.longitude, target.latitude, target.longitude);
   }, [userLocation, target]);
 
   // Needle angle: how much to rotate the needle relative to screen-up.

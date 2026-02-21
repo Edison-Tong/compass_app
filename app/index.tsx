@@ -58,7 +58,7 @@ export default function CompassScreen() {
   useFocusEffect(
     useCallback(() => {
       loadSelectedLocation();
-    }, [settings.selectedLocationId]),
+    }, [settings.selectedLocationId])
   );
 
   const loadSelectedLocation = async () => {
@@ -123,9 +123,7 @@ export default function CompassScreen() {
         {/* Header: selected location info */}
         <View style={styles.header}>
           <Text style={styles.locationEmoji}>{selectedLocation.emoji}</Text>
-          <Text style={[styles.locationName, { color: colors.text }]}>
-            {selectedLocation.name}
-          </Text>
+          <Text style={[styles.locationName, { color: colors.text }]}>{selectedLocation.name}</Text>
         </View>
 
         {/* Compass: rose + needle layered on top of each other */}
@@ -139,37 +137,13 @@ export default function CompassScreen() {
               <CompassNeedle angle={needleAngle} size={COMPASS_SIZE} />
             </View>
           </View>
-
-          {/* Heading readout below compass */}
-          <Text style={[styles.headingText, { color: colors.textSecondary }]}>
-            {Math.round(compass.heading)}° {getCardinalDirection(compass.heading)}
-          </Text>
         </View>
 
         {/* Distance badge */}
-        <DistanceBadge
-          distanceKm={distanceKm}
-          unit={settings.distanceUnit}
-          isLoading={isLoadingGPS}
-        />
+        <DistanceBadge distanceKm={distanceKm} unit={settings.distanceUnit} isLoading={isLoadingGPS} />
       </View>
     </ScreenWrapper>
   );
-}
-
-/**
- * Convert a heading in degrees to a cardinal direction string.
- * Uses 16-wind compass rose for better precision.
- */
-function getCardinalDirection(heading: number): string {
-  const directions = [
-    "N", "NNE", "NE", "ENE",
-    "E", "ESE", "SE", "SSE",
-    "S", "SSW", "SW", "WSW",
-    "W", "WNW", "NW", "NNW",
-  ];
-  const index = Math.round(heading / 22.5) % 16;
-  return directions[index];
 }
 
 const styles = StyleSheet.create({
@@ -212,11 +186,5 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-  },
-  headingText: {
-    fontSize: 14,
-    fontWeight: "500",
-    marginTop: 12,
-    fontVariant: ["tabular-nums"],
   },
 });
